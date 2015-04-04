@@ -13,7 +13,7 @@
         self = [super init];
     
         if (self) {
-            CCLOG(@"Penguin created");
+            CCLOG(@"Penguin created"); // prints this to console when penguin is initialized
         }
     
         return self;

@@ -13,7 +13,7 @@
         self = [super init];
     
         if (self) {
-            CCLOG(@"Seal created");
+            CCLOG(@"Seal created"); // prints this to console when seal is initialized
         }
     
         return self;
