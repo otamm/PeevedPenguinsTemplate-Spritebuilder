@@ -9,7 +9,7 @@
 #import "Penguin.h"
 
 @implementation Penguin
-    - (id)init {
+    /*- (id)init {
         self = [super init];
     
         if (self) {
@@ -17,6 +17,6 @@
         }
     
         return self;
-    }
+    }*/
 
 @end
