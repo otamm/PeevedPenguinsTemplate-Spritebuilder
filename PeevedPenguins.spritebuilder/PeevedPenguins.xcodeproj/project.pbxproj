@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
+		AA20392A1AD786CF00CB7497 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2039291AD786CF00CB7497 /* Gameplay.m */; };
 		AA22210D1ACFA1CF00B2D888 /* Penguin.m in Sources */ = {isa = PBXBuildFile; fileRef = AA22210C1ACFA1CF00B2D888 /* Penguin.m */; };
 		AA2221131ACFA20D00B2D888 /* Seal.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2221121ACFA20D00B2D888 /* Seal.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
@@ -41,6 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA20392F1AD786D300CB7497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7E7DE341A76DB7D004234B7;
+			remoteInfo = cocos2dMacFramework;
+		};
 		B737894A180761A90076A88C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
@@ -73,6 +81,8 @@
 
 /* Begin PBXFileReference section */
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		AA2039281AD786CE00CB7497 /* Gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gameplay.h; sourceTree = "<group>"; };
+		AA2039291AD786CF00CB7497 /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gameplay.m; sourceTree = "<group>"; };
 		AA22210B1ACFA1CF00B2D888 /* Penguin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Penguin.h; sourceTree = "<group>"; };
 		AA22210C1ACFA1CF00B2D888 /* Penguin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Penguin.m; sourceTree = "<group>"; };
 		AA2221111ACFA20D00B2D888 /* Seal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Seal.h; path = Source/Seal.h; sourceTree = "<group>"; };
@@ -153,6 +163,8 @@
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				B7378992180767190076A88C /* MainScene.h */,
 				B7378993180767190076A88C /* MainScene.m */,
+				AA2039281AD786CE00CB7497 /* Gameplay.h */,
+				AA2039291AD786CF00CB7497 /* Gameplay.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -163,6 +175,7 @@
 				B737894B180761A90076A88C /* libcocos2d.a */,
 				BC2B43A51A77597000F945C3 /* libcocos2dAndroid.a */,
 				BC2B43A71A77597000F945C3 /* libcocos2d-mac.a */,
+				AA2039301AD786D300CB7497 /* cocos2dMacFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -310,6 +323,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		AA2039301AD786D300CB7497 /* cocos2dMacFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = cocos2dMacFramework.framework;
+			remoteRef = AA20392F1AD786D300CB7497 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B737894B180761A90076A88C /* libcocos2d.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -385,6 +405,7 @@
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				AA22210D1ACFA1CF00B2D888 /* Penguin.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				AA20392A1AD786CF00CB7497 /* Gameplay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
