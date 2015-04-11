@@ -12,8 +12,8 @@
 {
     CCPhysicsNode *_physicsNode;
     CCNode *_catapultArm;
-    
     CCNode *_levelNode;
+    CCNode *_contentNode;
 }
 
 
@@ -47,9 +47,14 @@
     [penguin.physicsBody applyForce:force];
     
     // ensure followed object is in visible area when starting; focuses on followed object so the screen moves along with the specific object.
-    self.position = ccp(0, 0);
+    /*self.position = ccp(0, 0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox]; // worldBoundary defines a maximum space of the screen so the screen movement won't cross the scene bounds.
-    [self runAction:follow];
+    [self runAction:follow];*/
+    
+    // see code above for detailed explanations. This code here below uses the contentNode instead of the whole gameplay scene as a reference to move away from. Still uses the Gameplay scene boundaries as a reference for maximum positions, since the button is inside the contentNode, it won't follow the penguin as well.
+    self.position = ccp(0, 0);
+    CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
+    [_contentNode runAction:follow];
 }
 
 - (void)retry {

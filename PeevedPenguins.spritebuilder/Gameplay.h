@@ -8,6 +8,7 @@
 
 #import "CCSprite.h"
 #import "CCNode.h"
+
 @interface Gameplay : CCNode
 
 @end
