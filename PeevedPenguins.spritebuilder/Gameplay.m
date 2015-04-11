@@ -8,14 +8,14 @@
 
 #import "Gameplay.h"
 
-@implementation Gameplay {
+@implementation Gameplay
     
     CCPhysicsNode *_physicsNode;
     CCNode *_catapultArm;
     
     CCNode *_levelNode;
     
-}
+
 
 // is called when CCB file has completed loading
 - (void)didLoadFromCCB {
