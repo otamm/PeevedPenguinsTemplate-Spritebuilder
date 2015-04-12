@@ -22,9 +22,14 @@
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     
+    // highlights physics bodies & joints, making debug process easier.
+    _physicsNode.debugDraw = TRUE;
+    
     // this will load the first level and add it as a child of _levelNode (pre defined in SpriteBuilder), which will load the logic and render the appearence of the first level in the level area of the Gameplay scene.
     CCScene *level = [CCBReader loadAsScene:@"Levels/Level1"];
     [_levelNode addChild:level];
+    
+    
 }
 
 // called on every touch in this scene
