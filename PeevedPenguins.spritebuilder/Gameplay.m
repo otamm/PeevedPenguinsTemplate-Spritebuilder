@@ -14,6 +14,7 @@
     CCNode *_catapultArm;
     CCNode *_levelNode;
     CCNode *_contentNode;
+    CCPhysicsNode *_pullbackNode;
 }
 
 
@@ -28,6 +29,10 @@
     // this will load the first level and add it as a child of _levelNode (pre defined in SpriteBuilder), which will load the logic and render the appearence of the first level in the level area of the Gameplay scene.
     CCScene *level = [CCBReader loadAsScene:@"Levels/Level1"];
     [_levelNode addChild:level];
+    
+    // nothing shall collide with our invisible nodes
+    // a collisionMask attribute sets which objects affected by the PhysicsNode will collide with the specific object. Below the collision mask does not contain any objects (since the node is invisible and is used mainly to hack the catapult arm into behaving in a more real way)
+    _pullbackNode.physicsBody.collisionMask = @[];
     
     
 }
