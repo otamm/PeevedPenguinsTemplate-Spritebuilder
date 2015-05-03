@@ -47,6 +47,37 @@
     
 }
 
+// called on every touch event in the gameplay scene
+- (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+    //[self launchPenguin]; // triggers the code below when screen is touched.
+    
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
+    
+    // start catapult dragging when a touch inside of the catapult arm occurs
+    if (CGRectContainsPoint([_catapultArm boundingBox], touchLocation))
+    {
+        // move the mouseJointNode to the touch position
+        _mouseJointNode.position = touchLocation;
+        
+        // setup a spring joint between the mouseJointNode and the catapultArm; other end of the joint is set dynamically according to the touch location.
+        _mouseJoint = [CCPhysicsJoint connectedSpringJointWithBodyA:_mouseJointNode.physicsBody bodyB:_catapultArm.physicsBody anchorA:ccp(0, 0) anchorB:ccp(34, 138) restLength:0.f stiffness:3000.f damping:150.f];
+        
+        // create a penguin from the ccb-file
+        _currentPenguin = [CCBReader load:@"Penguin"];
+        // initially position it on the scoop. 34,138 is the position in the node space of the _catapultArm
+        CGPoint penguinPosition = [_catapultArm convertToWorldSpace:ccp(34, 138)];
+        // transform the world position to the node space to which the penguin will be added (_physicsNode)
+        _currentPenguin.position = [_physicsNode convertToNodeSpace:penguinPosition];
+        // add it to the physics world
+        [_physicsNode addChild:_currentPenguin];
+        // we don't want the penguin to rotate in the scoop
+        _currentPenguin.physicsBody.allowsRotation = FALSE;
+        
+        // create a joint to keep the penguin fixed to the scoop until the catapult is released
+        _penguinCatapultJoint = [CCPhysicsJoint connectedPivotJointWithBodyA:_currentPenguin.physicsBody bodyB:_catapultArm.physicsBody anchorA:_currentPenguin.anchorPointInPoints];
+    }
+}
+
 // drags the catapult
 - (void)touchMoved:(CCTouch *)touch withEvent:(UIEvent *)event
 {
@@ -106,45 +137,14 @@
     [penguin.physicsBody applyForce:force];
     
     // ensure followed object is in visible area when starting; focuses on followed object so the screen moves along with the specific object.
-    /*self.position = ccp(0, 0);
+    self.position = ccp(0, 0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox]; // worldBoundary defines a maximum space of the screen so the screen movement won't cross the scene bounds.
-    [self runAction:follow];*/
+    [self runAction:follow];
     
     // see code above for detailed explanations. This code here below uses the contentNode instead of the whole gameplay scene as a reference to move away from. Still uses the Gameplay scene boundaries as a reference for maximum positions, since the button is inside the contentNode, it won't follow the penguin as well.
-    self.position = ccp(0, 0);
+    /*self.position = ccp(0, 0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
-    [_contentNode runAction:follow];
-}
-
-// called on every touch event in the gameplay scene
-- (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-    //[self launchPenguin]; // triggers the code below when screen is touched.
-    
-    CGPoint touchLocation = [touch locationInNode:_contentNode];
-    
-    // start catapult dragging when a touch inside of the catapult arm occurs
-    if (CGRectContainsPoint([_catapultArm boundingBox], touchLocation))
-    {
-        // move the mouseJointNode to the touch position
-        _mouseJointNode.position = touchLocation;
-        
-        // setup a spring joint between the mouseJointNode and the catapultArm; other end of the joint is set dynamically according to the touch location.
-        _mouseJoint = [CCPhysicsJoint connectedSpringJointWithBodyA:_mouseJointNode.physicsBody bodyB:_catapultArm.physicsBody anchorA:ccp(0, 0) anchorB:ccp(34, 138) restLength:0.f stiffness:3000.f damping:150.f];
-        
-        // create a penguin from the ccb-file
-        _currentPenguin = [CCBReader load:@"Penguin"];
-        // initially position it on the scoop. 34,138 is the position in the node space of the _catapultArm
-        CGPoint penguinPosition = [_catapultArm convertToWorldSpace:ccp(34, 138)];
-        // transform the world position to the node space to which the penguin will be added (_physicsNode)
-        _currentPenguin.position = [_physicsNode convertToNodeSpace:penguinPosition];
-        // add it to the physics world
-        [_physicsNode addChild:_currentPenguin];
-        // we don't want the penguin to rotate in the scoop
-        _currentPenguin.physicsBody.allowsRotation = FALSE;
-        
-        // create a joint to keep the penguin fixed to the scoop until the catapult is released
-        _penguinCatapultJoint = [CCPhysicsJoint connectedPivotJointWithBodyA:_currentPenguin.physicsBody bodyB:_catapultArm.physicsBody anchorA:_currentPenguin.anchorPointInPoints];
-    }
+    [_contentNode runAction:follow];*/
 }
 
 - (void)retry {
