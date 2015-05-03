@@ -124,27 +124,38 @@
 
 - (void)launchPenguin {
     // loads the Penguin.ccb we have set up in Spritebuilder
-    CCNode* penguin = [CCBReader load:@"Penguin"];
+    //CCNode* penguin = [CCBReader load:@"Penguin"];
+    _currentPenguin = [CCBReader load:@"Penguin"];
+    
     // position the penguin at the bowl of the catapult
-    penguin.position = ccpAdd(_catapultArm.position, ccp(16, 50));
+    //penguin.position = ccpAdd(_catapultArm.position, ccp(16, 50));
+    _currentPenguin.position = ccpAdd(_catapultArm.position, ccp(16, 50));
     
     // add the penguin to the physicsNode of this scene (because it has physics enabled)
-    [_physicsNode addChild:penguin];
+    //[_physicsNode addChild:penguin];
+    [_physicsNode addChild:_currentPenguin];
     
     // manually create & apply a force to launch the penguin
+    /*CGPoint launchDirection = ccp(1, 0);
+    CGPoint force = ccpMult(launchDirection, 8000);
+    [penguin.physicsBody applyForce:force];*/
+    
     CGPoint launchDirection = ccp(1, 0);
     CGPoint force = ccpMult(launchDirection, 8000);
-    [penguin.physicsBody applyForce:force];
+    [_currentPenguin.physicsBody applyForce:force];
     
     // ensure followed object is in visible area when starting; focuses on followed object so the screen moves along with the specific object.
-    self.position = ccp(0, 0);
+    /*self.position = ccp(0, 0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox]; // worldBoundary defines a maximum space of the screen so the screen movement won't cross the scene bounds.
-    [self runAction:follow];
+    [self runAction:follow];*/
     
     // see code above for detailed explanations. This code here below uses the contentNode instead of the whole gameplay scene as a reference to move away from. Still uses the Gameplay scene boundaries as a reference for maximum positions, since the button is inside the contentNode, it won't follow the penguin as well.
     /*self.position = ccp(0, 0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
     [_contentNode runAction:follow];*/
+    self.position = ccp(0, 0);
+    CCActionFollow *follow = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
+    [_contentNode runAction:follow];
 }
 
 - (void)retry {
