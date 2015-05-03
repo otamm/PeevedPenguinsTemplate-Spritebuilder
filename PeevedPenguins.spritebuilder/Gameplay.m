@@ -39,6 +39,7 @@
     // nothing shall collide with our invisible nodes
     // a collisionMask attribute sets which objects affected by the PhysicsNode will collide with the specific object. Below the collision mask does not contain any objects (since the node is invisible and is used mainly to hack the catapult arm into behaving in a more real way)
     _pullbackNode.physicsBody.collisionMask = @[];
+    _mouseJointNode.physicsBody.collisionMask = @[];
     
     
 }
