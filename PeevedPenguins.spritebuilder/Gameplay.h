@@ -8,6 +8,7 @@
 
 #import "CCSprite.h"
 #import "CCNode.h"
+#import "CCPhysics+ObjectiveChipmunk.h"
 
 @interface Gameplay : CCNode <CCPhysicsCollisionDelegate> // delegates control to CCPhysicsCollision at specific moments.
 /*

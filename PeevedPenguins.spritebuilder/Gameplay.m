@@ -160,10 +160,27 @@
     CCActionFollow *follow = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
     [_contentNode runAction:follow];
 }
+
 // delegate method from Chipmunk (Cocos2D's physics engine) when a seal object collides into any other object that's a physics node.
+
 -(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair seal:(CCNode *)nodeA wildcard:(CCNode *)nodeB
 {
-    CCLOG(@"Something collided with a seal!");
+    //CCLOG(@"Something collided with a seal!");
+    
+    // gets kitectic energy of collision between seal and something else;
+    float energy = [pair totalKineticEnergy];
+    
+    // if energy is large enough, remove the seal
+    if (energy > 5000.f) {
+        [[_physicsNode space] addPostStepBlock:^{ // 'addPostStepBlock' ensures the sealRemoved is only run once in case more than one strong collision happens in the same frame.
+            [self sealRemoved:nodeA];
+            CCLOG(@"Seal removed!");
+        } key:nodeA];
+    }
+}
+
+- (void)sealRemoved:(CCNode *)seal {
+    [seal removeFromParent];
 }
 
 
