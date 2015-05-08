@@ -18,4 +18,10 @@
     
         return self;
     }*/
+
+// assigns collisionType 'seal' to each Seal object.
+- (void)didLoadFromCCB {
+    self.physicsBody.collisionType = @"seal";
+}
+
 @end

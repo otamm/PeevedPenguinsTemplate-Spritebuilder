@@ -44,6 +44,9 @@
     _pullbackNode.physicsBody.collisionMask = @[];
     _mouseJointNode.physicsBody.collisionMask = @[];
     
+    // delegates collision handling to the CCPhysicsCollisionDelegate object pre-defined in SpriteBuilder (see Gameplay.h).
+    _physicsNode.collisionDelegate = self;
+    
     
 }
 
@@ -157,6 +160,12 @@
     CCActionFollow *follow = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
     [_contentNode runAction:follow];
 }
+// delegate method from Chipmunk (Cocos2D's physics engine) when a seal object collides into any other object that's a physics node.
+-(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair seal:(CCNode *)nodeA wildcard:(CCNode *)nodeB
+{
+    CCLOG(@"Something collided with a seal!");
+}
+
 
 - (void)retry {
     // reload the level
