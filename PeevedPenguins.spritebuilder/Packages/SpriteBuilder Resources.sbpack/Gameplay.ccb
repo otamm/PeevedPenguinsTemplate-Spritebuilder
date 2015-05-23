@@ -1570,8 +1570,6 @@
 								<string>WaitingPenguin.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -2221,7 +2219,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>2.5333333015441895</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
